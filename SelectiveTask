@@ -1,0 +1,9 @@
+public class SelectiveTask {
+    public static void main(String []args){
+        Downloader downloader = new Downloader();
+        downloader.loadData();
+        XmlParser parser = new XmlParser();
+        parser.parse();
+        parser.printData();
+    }
+}
