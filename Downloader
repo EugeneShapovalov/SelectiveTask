@@ -1,0 +1,34 @@
+import java.io.*;
+import java.net.URL;
+import java.net.URLConnection;
+
+/**
+ * Created by Администратор on 11.10.14.
+ */
+public class Downloader {
+
+    //request to website
+    private final String request = "http://api.bandsintown.com/artists/Slayer/events?format=xml&api_version=2.0&app_id=Your_APP_ID";
+    private final String fileName = "data.xml";
+
+
+    //method loads data from website
+    public void loadData(){
+        try {
+            String s = "";
+            File file = new File(fileName);
+            URL u = new URL(request);
+            URLConnection connection = u.openConnection();
+            BufferedReader input = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            BufferedWriter output = new BufferedWriter(new FileWriter(file));
+            while ((s = input.readLine()) != null){
+                output.write(s);
+            }
+            input.close();
+            output.close();
+        }
+        catch (IOException e){
+            System.out.println(e.getMessage());
+        }
+    }
+}
